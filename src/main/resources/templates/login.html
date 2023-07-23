@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 400px;
+            margin-top: 100px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .container h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #343a40;
+        }
+
+        .form-group label {
+            color: #343a40;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 100px;
+            height: auto;
+        }
+
+        .extra-options {
+            margin-top: 10px;
+        }
+
+        .extra-options a {
+            margin-right: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="logo">
+        <img src="path_to_your_logo.png" alt="Logo">
+    </div>
+    <h1>Login</h1>
+    <form th:action="@{/login}" method="post">
+
+        <!-- error message-->
+
+        <div th:if="${param.error}">
+            <div class="alert alert-danger">
+                invalid username or password
+            </div>
+
+            <!--logout message-->
+
+            <div th:if="${param.logout}">
+                <div class="alert alert-info"> logout successful.</div>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="username">Username:</label>
+            <input type="text"
+                   class="form-control"
+                   placeholder="Enter  email"
+                   id="username"
+                   name="username"
+                   required>
+
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password"
+                   class="form-control"
+                   placeholder="Enter password"
+                   id="password"
+                   name="password"
+                   required>
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox"
+                   class="form-check-input"
+                   id="rememberMe"
+                   name="rememberMe">
+            <label class="form-check-label" for="rememberMe">Remember Me</label>
+        </div>
+        <button type="submit" class="btn btn-primary">login</button>
+        <div class="extra-options">
+            <a href="/forgotPassword" th:href="@{/forgotPassword}">Forgot Password?</a>
+        </div>
+    </form>
+  <div class="form-group">
+    <span>New user? <a href="/" th:href="@{/registration}">
+      Register here</a><span></span>
+
+    </span>
+  </div>
+</div>
+</body>
+</html>

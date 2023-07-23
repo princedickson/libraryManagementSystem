@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Add New Member</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+        /* Your custom styles here */
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">My Website</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <br>
+  <br>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contact</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <span>Add New Member</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<style>
+
+    .form-container {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 60px;
+    }
+
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .form-container .form-group label {
+        font-weight: normal;
+    }
+
+    .form-container .btn-container {
+        text-align: center;
+        margin-top: 30px;
+    }
+</style>
+
+
+
+
+
+<div class="container">
+  <div class="form-container">
+
+    <h2>Edit Member</h2>
+    <form th:action="@{/edit/{id}(id=${members.id})}" th:object="${members}" method ="POST">
+      <div class="form-group">
+        <label for="member">Member Type</label>
+        <select class="form-control" id="member" required th:name="*{memberType}" th:field="*{MemberType}">
+          <option value="">Select Member</option>
+          <option value="male">Parent</option>
+          <option value="female">Student</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="first-name">First Name</label>
+        <input
+                type="text"
+                th:field="*{FirstName}"
+                class="form-control"
+                id="first-name"
+                required
+                th:name="*{firstName}">
+      </div>
+
+      <div class="form-group">
+        <label for="last-name">Last Name</label>
+        <input
+                type="text"
+                th:field="*{LastName}"
+                class="form-control"
+                id="last-name"
+                required
+                th:name="*{lastName}">
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select class="form-control"
+                id="gender" required
+                th:field="*{Gender}"
+                th:name="*{gender}">
+          <option value="">Select Gender</option>
+          <option th:value="Male" th:text="Male">Male</option>
+          <option th:value="Female" th:text="Female">Female</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="contact">Contact</label>
+        <input type="tel"
+               class="form-control"
+               th:field="*{Contact}"
+               id="contact"
+               required th:name="*{contact}">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email"
+               th:field="*{Email}"
+               class="form-control"
+               id="email"
+               required th:name="*{email}">
+      </div>
+      <div class="btn-container">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>
